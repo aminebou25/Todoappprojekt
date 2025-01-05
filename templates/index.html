@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>To-Do List</h1>
+    </header>
+
+    <div class="container">
+        <h2>Welcome!</h2>
+        <p>Ready to manage your tasks? Please log in or register to get started.</p>
+        <div class="buttons">
+            <a href="{{ url_for('login') }}" class="btn">Login</a>
+            <a href="{{ url_for('register') }}" class="btn">Register</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 To-Do List App</p>
+    </footer>
+</body>
+</html>

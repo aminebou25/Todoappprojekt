@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Add Task Form -->
+        <form method="POST">
+            <input type="text" name="task" placeholder="New task" required>
+            <input type="date" name="due_date" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <!-- Task List -->
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <span>{{ task.task }} (Due: {{ task.due_date }})</span>
+                    <a href="{{ url_for('complete_task', task_id=task.id) }}">Complete</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>
